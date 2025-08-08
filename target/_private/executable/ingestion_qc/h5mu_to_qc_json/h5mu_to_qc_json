@@ -461,9 +461,9 @@ RUN pip install --upgrade pip && \
 
 LABEL org.opencontainers.image.authors="Jakub Majercik, Dorien Roosen, Robrecht Cannoodt, Weiwei Schultz"
 LABEL org.opencontainers.image.description="Companion container for running component ingestion_qc h5mu_to_qc_json"
-LABEL org.opencontainers.image.created="2025-08-08T09:30:19Z"
+LABEL org.opencontainers.image.created="2025-08-08T09:46:02Z"
 LABEL org.opencontainers.image.source="https://github.com/openpipelines-bio/openpipeline_incubator"
-LABEL org.opencontainers.image.revision="41a01155781242d7d1b065c53a1292288230e5eb"
+LABEL org.opencontainers.image.revision="cedb9ef2f6b980f78aacad61ea476098241e8072"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER

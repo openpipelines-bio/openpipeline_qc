@@ -3400,7 +3400,7 @@ meta = [
       "repository" : {
         "type" : "vsh",
         "repo" : "craftbox",
-        "tag" : "main"
+        "tag" : "v0.2.0"
       }
     }
   ],
@@ -3415,7 +3415,7 @@ meta = [
       "type" : "vsh",
       "name" : "craftbox",
       "repo" : "craftbox",
-      "tag" : "main"
+      "tag" : "v0.2.0"
     }
   ],
   "links" : {
@@ -3506,7 +3506,7 @@ meta = [
     "engine" : "native",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/workflows/generate_qc_report",
     "viash_version" : "0.9.4",
-    "git_commit" : "41a01155781242d7d1b065c53a1292288230e5eb",
+    "git_commit" : "cedb9ef2f6b980f78aacad61ea476098241e8072",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3532,7 +3532,7 @@ meta = [
         "type" : "vsh",
         "name" : "craftbox",
         "repo" : "craftbox",
-        "tag" : "main"
+        "tag" : "v0.2.0"
       }
     ],
     "viash_version" : "0.9.4",
@@ -3558,7 +3558,7 @@ include { cellbender_remove_background as cellbender_viashalias } from "${meta.r
 cellbender = cellbender_viashalias.run(key: "cellbender")
 include { h5mu_to_qc_json } from "${meta.resources_dir}/../../../_private/nextflow/ingestion_qc/h5mu_to_qc_json/main.nf"
 include { generate_html } from "${meta.resources_dir}/../../../nextflow/ingestion_qc/generate_html/main.nf"
-include { move_files_to_directory } from "${meta.root_dir}/dependencies/vsh/vsh/craftbox/main/nextflow/move_files_to_directory/main.nf"
+include { move_files_to_directory } from "${meta.root_dir}/dependencies/vsh/vsh/craftbox/v0.2.0/nextflow/move_files_to_directory/main.nf"
 
 // inner workflow
 // user-provided Nextflow code

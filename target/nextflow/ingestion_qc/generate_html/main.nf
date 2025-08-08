@@ -3236,7 +3236,7 @@ meta = [
       "type" : "vsh",
       "name" : "craftbox",
       "repo" : "craftbox",
-      "tag" : "main"
+      "tag" : "v0.2.0"
     }
   ],
   "links" : {
@@ -3353,7 +3353,7 @@ meta = [
     "engine" : "docker",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/ingestion_qc/generate_html",
     "viash_version" : "0.9.4",
-    "git_commit" : "41a01155781242d7d1b065c53a1292288230e5eb",
+    "git_commit" : "cedb9ef2f6b980f78aacad61ea476098241e8072",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3379,7 +3379,7 @@ meta = [
         "type" : "vsh",
         "name" : "craftbox",
         "repo" : "craftbox",
-        "tag" : "main"
+        "tag" : "v0.2.0"
       }
     ],
     "viash_version" : "0.9.4",
