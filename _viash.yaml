@@ -18,7 +18,7 @@ repositories:
   - name: craftbox
     repo: craftbox
     type: vsh
-    tag: main 
+    tag: v0.2.0 
 
 info:
   test_resources:
