@@ -462,9 +462,9 @@ RUN npm install -g pnpm@latest-10 \
 
 LABEL org.opencontainers.image.authors="Jakub Majercik, Dorien Roosen, Robrecht Cannoodt, Weiwei Schultz"
 LABEL org.opencontainers.image.description="Companion container for running component ingestion_qc generate_html"
-LABEL org.opencontainers.image.created="2025-08-11T08:29:43Z"
-LABEL org.opencontainers.image.source="https://github.com/openpipelines-bio/openpipeline_incubator"
-LABEL org.opencontainers.image.revision="c7a93716f92762bed306dd7fc40d0b06e6508821"
+LABEL org.opencontainers.image.created="2025-08-11T15:59:38Z"
+LABEL org.opencontainers.image.source="https://github.com/openpipelines-bio/openpipeline_qc"
+LABEL org.opencontainers.image.revision="fb0aa76a73a2aa7fe6b5c68a0b134e3db564c922"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
@@ -772,7 +772,7 @@ if [[ "$VIASH_ENGINE_TYPE" == "docker" ]]; then
 
   # determine docker image id
   if [[ "$VIASH_ENGINE_ID" == 'docker' ]]; then
-    VIASH_DOCKER_IMAGE_ID='ghcr.io/openpipelines-bio/openpipeline_incubator/ingestion_qc/generate_html:build_main'
+    VIASH_DOCKER_IMAGE_ID='ghcr.io/openpipelines-bio/openpipeline_qc/ingestion_qc/generate_html:build_main'
   fi
 
   # print dockerfile

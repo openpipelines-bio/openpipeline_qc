@@ -113,7 +113,7 @@ repositories:
   repo: "craftbox"
   tag: "v0.2.0"
 links:
-  repository: "https://github.com/openpipelines-bio/openpipeline_incubator"
+  repository: "https://github.com/openpipelines-bio/openpipeline_qc"
   docker_registry: "ghcr.io"
 runners:
 - type: "executable"
@@ -225,10 +225,10 @@ build_info:
   output: "target/nextflow/ingestion_qc/detect_ingestion_method"
   executable: "target/nextflow/ingestion_qc/detect_ingestion_method/main.nf"
   viash_version: "0.9.4"
-  git_commit: "c7a93716f92762bed306dd7fc40d0b06e6508821"
+  git_commit: "fb0aa76a73a2aa7fe6b5c68a0b134e3db564c922"
   git_remote: "https://github.com/openpipelines-bio/openpipeline_qc"
 package_config:
-  name: "openpipeline_incubator"
+  name: "openpipeline_qc"
   version: "build_main"
   info:
     test_resources:
@@ -254,5 +254,5 @@ package_config:
     )'\n"
   organization: "openpipelines-bio"
   links:
-    repository: "https://github.com/openpipelines-bio/openpipeline_incubator"
+    repository: "https://github.com/openpipelines-bio/openpipeline_qc"
     docker_registry: "ghcr.io"

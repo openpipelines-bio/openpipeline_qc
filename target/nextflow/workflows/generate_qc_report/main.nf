@@ -3419,7 +3419,7 @@ meta = [
     }
   ],
   "links" : {
-    "repository" : "https://github.com/openpipelines-bio/openpipeline_incubator",
+    "repository" : "https://github.com/openpipelines-bio/openpipeline_qc",
     "docker_registry" : "ghcr.io"
   },
   "runners" : [
@@ -3506,11 +3506,11 @@ meta = [
     "engine" : "native",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/workflows/generate_qc_report",
     "viash_version" : "0.9.4",
-    "git_commit" : "c7a93716f92762bed306dd7fc40d0b06e6508821",
+    "git_commit" : "fb0aa76a73a2aa7fe6b5c68a0b134e3db564c922",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
-    "name" : "openpipeline_incubator",
+    "name" : "openpipeline_qc",
     "version" : "build_main",
     "info" : {
       "test_resources" : [
@@ -3543,7 +3543,7 @@ meta = [
     ],
     "organization" : "openpipelines-bio",
     "links" : {
-      "repository" : "https://github.com/openpipelines-bio/openpipeline_incubator",
+      "repository" : "https://github.com/openpipelines-bio/openpipeline_qc",
       "docker_registry" : "ghcr.io"
     }
   }
