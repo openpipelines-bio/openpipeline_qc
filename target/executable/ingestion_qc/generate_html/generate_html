@@ -462,9 +462,9 @@ RUN npm install -g pnpm@latest-10 \
 
 LABEL org.opencontainers.image.authors="Jakub Majercik, Dorien Roosen, Robrecht Cannoodt, Weiwei Schultz"
 LABEL org.opencontainers.image.description="Companion container for running component ingestion_qc generate_html"
-LABEL org.opencontainers.image.created="2025-08-12T08:14:27Z"
+LABEL org.opencontainers.image.created="2025-08-12T14:26:57Z"
 LABEL org.opencontainers.image.source="https://github.com/openpipelines-bio/openpipeline_qc"
-LABEL org.opencontainers.image.revision="94fcb6a161d6ef2d5df7241a364207848850a94a"
+LABEL org.opencontainers.image.revision="4b5539227ceaa6be5c7e97ca45fcf3aa025466fd"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
