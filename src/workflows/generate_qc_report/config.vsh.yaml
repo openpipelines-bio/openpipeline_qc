@@ -75,6 +75,20 @@ argument_groups:
         default: "ribosomal"
         description: |
           In which .var slot to store a boolean array corresponding the ribosomal genes.
+      - name: --min_total_counts
+        type: integer
+        description: | 
+          Minimum total counts for a cell to be included in the output.
+          For cellranger ingested data, the recommended value is 10.
+          For xenium ingested data, the recommended value is 10.
+        default: 10
+      - name: --min_num_nonzero_vars
+        type: integer
+        description: | 
+          Minimum number of nonzero vars for a cell to be included in the output.
+          For cellranger ingested data, the recommended value is 10.
+          For xenium ingested data, the recommended value is 1.
+        default: 10
   
   - name: Cellbender options
     arguments:
