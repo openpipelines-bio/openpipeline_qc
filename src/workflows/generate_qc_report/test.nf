@@ -63,6 +63,7 @@ workflow test_xenium {
         run_cellbender: false,
         ingestion_method: "xenium",
         var_gene_names: "gene_ids",
+        min_num_nonzero_vars: "1",
         output_html: "report.html",
         publish_dir: "test_out"
       ],
@@ -71,6 +72,7 @@ workflow test_xenium {
         input: resources_test_file.resolve("spatial_qc_sample_data/xenium_tiny.qc.h5mu"),
         ingestion_method: "xenium",
         var_gene_names: "gene_ids",
+        min_num_nonzero_vars: "1",
         run_cellbender: false,
         output_html: "report.html",
         publish_dir: "test_out"

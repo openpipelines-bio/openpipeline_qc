@@ -75,6 +75,18 @@ argument_groups:
         default: "ribosomal"
         description: |
           In which .var slot to store a boolean array corresponding the ribosomal genes.
+      - name: --min_total_counts
+        type: integer
+        description: | 
+          Minimum total counts for a cell to be included in the output.
+        default: 10
+        min: 1
+      - name: --min_num_nonzero_vars
+        type: integer
+        description: | 
+          Minimum number of nonzero vars for a cell to be included in the output.
+        default: 10
+        min: 1
   
   - name: Cellbender options
     arguments:

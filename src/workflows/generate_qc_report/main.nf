@@ -147,27 +147,6 @@ workflow run_wf {
       [id, new_state]
     }
 
-    // Set report filter settings
-    | map { id, state -> 
-      def conditionalValues = [
-        "cellranger_multi": [
-          "min_total_counts": 10,
-          "min_num_nonzero_vars": 10
-        ],
-        "xenium": [
-          "min_total_counts": 10, 
-          "min_num_nonzero_vars": 1
-        ]
-      ]
-      
-      def method = state.ingestion_method
-      def additionalParams = conditionalValues[method]
-      
-      [ id, state + additionalParams ]
-    }
-
-    | view {"After setting filters: $it"}
-
     // generate qc json
     | h5mu_to_qc_json.run(
       fromState: [
