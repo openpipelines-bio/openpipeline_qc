@@ -3253,6 +3253,32 @@ meta = [
           "direction" : "input",
           "multiple" : false,
           "multiple_sep" : ";"
+        },
+        {
+          "type" : "integer",
+          "name" : "--min_total_counts",
+          "description" : "Minimum total counts for a cell to be included in the output.\n",
+          "default" : [
+            10
+          ],
+          "required" : false,
+          "min" : 1,
+          "direction" : "input",
+          "multiple" : false,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "integer",
+          "name" : "--min_num_nonzero_vars",
+          "description" : "Minimum number of nonzero vars for a cell to be included in the output.\n",
+          "default" : [
+            10
+          ],
+          "required" : false,
+          "min" : 1,
+          "direction" : "input",
+          "multiple" : false,
+          "multiple_sep" : ";"
         }
       ]
     },
@@ -3506,7 +3532,7 @@ meta = [
     "engine" : "native",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/workflows/generate_qc_report",
     "viash_version" : "0.9.4",
-    "git_commit" : "4b5539227ceaa6be5c7e97ca45fcf3aa025466fd",
+    "git_commit" : "2633afa31a5c42208c1206408164f4c0f4c0aa20",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3710,27 +3736,6 @@ workflow run_wf {
       def new_state = state + ["output_reporting_json": "reporting_json.json"]
       [id, new_state]
     }
-
-    // Set report filter settings
-    | map { id, state -> 
-      def conditionalValues = [
-        "cellranger_multi": [
-          "min_total_counts": 10,
-          "min_num_nonzero_vars": 10
-        ],
-        "xenium": [
-          "min_total_counts": 10, 
-          "min_num_nonzero_vars": 1
-        ]
-      ]
-      
-      def method = state.ingestion_method
-      def additionalParams = conditionalValues[method]
-      
-      [ id, state + additionalParams ]
-    }
-
-    | view {"After setting filters: $it"}
 
     // generate qc json
     | h5mu_to_qc_json.run(

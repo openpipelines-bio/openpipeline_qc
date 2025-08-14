@@ -45,7 +45,7 @@ def test_cellranger_execution(run_component, tmp_path):
     assert np.all([column in column_names_cell for column in expected_column_names])
 
     for key in output_json_dict.keys():
-        assert output_json_dict[key].keys() == {"num_rows", "num_cols", "columns"}
+        assert output_json_dict[key].keys() == {"num_rows", "num_cols", "min_total_counts", "min_num_nonzero_vars", "columns"}
         for col in output_json_dict[key]["columns"]:
             assert {"name", "dtype", "data"}.issubset(col.keys())
 
@@ -91,7 +91,7 @@ def test_set_filters(run_component, tmp_path):
     assert np.all([column in column_names for column in expected_column_names])
     assert np.all([column not in column_names for column in unexpected_column_names])
     for key in output_json_dict.keys():
-        assert output_json_dict[key].keys() == {"num_rows", "num_cols", "columns"}
+        assert output_json_dict[key].keys() == {"num_rows", "num_cols", "min_total_counts", "min_num_nonzero_vars", "columns"}
         for col in output_json_dict[key]["columns"]:
             assert {"name", "dtype", "data"}.issubset(col.keys())
 
@@ -135,7 +135,7 @@ def test_xenium_execution(run_component, tmp_path):
     assert np.all([column in column_names_cell for column in expected_column_names])
 
     for key in output_json_dict.keys():
-        assert output_json_dict[key].keys() == {"num_rows", "num_cols", "columns"}
+        assert output_json_dict[key].keys() == {"num_rows", "num_cols", "min_total_counts", "min_num_nonzero_vars", "columns"}
         for col in output_json_dict[key]["columns"]:
             assert {"name", "dtype", "data"}.issubset(col.keys())
 

@@ -461,9 +461,9 @@ RUN pip install --upgrade pip && \
 
 LABEL org.opencontainers.image.authors="Jakub Majercik, Dorien Roosen, Robrecht Cannoodt, Weiwei Schultz"
 LABEL org.opencontainers.image.description="Companion container for running component ingestion_qc h5mu_to_qc_json"
-LABEL org.opencontainers.image.created="2025-08-12T14:26:57Z"
+LABEL org.opencontainers.image.created="2025-08-14T12:06:50Z"
 LABEL org.opencontainers.image.source="https://github.com/openpipelines-bio/openpipeline_qc"
-LABEL org.opencontainers.image.revision="4b5539227ceaa6be5c7e97ca45fcf3aa025466fd"
+LABEL org.opencontainers.image.revision="2633afa31a5c42208c1206408164f4c0f4c0aa20"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
@@ -1571,7 +1571,7 @@ def transform_df(df):
 
         columns.append(column_info)
 
-    return {"num_rows": len(df), "num_cols": len(df.columns), "columns": columns}
+    return {"num_rows": len(df), "num_cols": len(df.columns), "min_total_counts": par["min_total_counts"], "min_num_nonzero_vars": par["min_num_nonzero_vars"], "columns": columns}
 
 
 def check_optional_obs_keys(obs, keys, message):

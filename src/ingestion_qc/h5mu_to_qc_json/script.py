@@ -84,7 +84,7 @@ def transform_df(df):
 
         columns.append(column_info)
 
-    return {"num_rows": len(df), "num_cols": len(df.columns), "columns": columns}
+    return {"num_rows": len(df), "num_cols": len(df.columns), "min_total_counts": par["min_total_counts"], "min_num_nonzero_vars": par["min_num_nonzero_vars"], "columns": columns}
 
 
 def check_optional_obs_keys(obs, keys, message):
