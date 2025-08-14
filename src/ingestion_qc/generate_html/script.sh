@@ -2,7 +2,7 @@ ABSOLUTE_INPUT_DATA=$(realpath $par_input_data)
 ABSOLUTE_INPUT_STRUCTURE=$(realpath $par_input_structure)
 ABSOLUTE_OUTPUT=$(realpath $par_output_qc_report)
 
-cd /opt/incubator_ingestion_qc
+cd /opt/qc_report_generator
 mkdir src/data
 
 echo "Compressing input data..."
