@@ -53,8 +53,8 @@ engines:
       - type: docker
         run: |
           npm install -g pnpm@latest-10 \
-          && cd /opt && git clone https://github.com/openpipelines-bio/qc_report_generator.git \
-          && cd qc_report_generator && pnpm install \
+          && cd /opt && git clone -b v0.1.0 https://github.com/openpipelines-bio/siqc.git \
+          && cd siqc && pnpm install \
           && true
 
 runners:

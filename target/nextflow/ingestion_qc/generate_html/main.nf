@@ -3341,7 +3341,7 @@ meta = [
         {
           "type" : "docker",
           "run" : [
-            "npm install -g pnpm@latest-10 \\\\\n&& cd /opt && git clone https://github.com/openpipelines-bio/qc_report_generator.git \\\\\n&& cd qc_report_generator && pnpm install \\\\\n&& true\n"
+            "npm install -g pnpm@latest-10 \\\\\n&& cd /opt && git clone -b v0.1.0 https://github.com/openpipelines-bio/siqc.git \\\\\n&& cd siqc && pnpm install \\\\\n&& true\n"
           ]
         }
       ]
@@ -3353,7 +3353,7 @@ meta = [
     "engine" : "docker",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/ingestion_qc/generate_html",
     "viash_version" : "0.9.4",
-    "git_commit" : "2633afa31a5c42208c1206408164f4c0f4c0aa20",
+    "git_commit" : "3fe4d5afc069ccb1caad148fb383569bbac88dfe",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3435,7 +3435,7 @@ ABSOLUTE_INPUT_DATA=\\$(realpath \\$par_input_data)
 ABSOLUTE_INPUT_STRUCTURE=\\$(realpath \\$par_input_structure)
 ABSOLUTE_OUTPUT=\\$(realpath \\$par_output_qc_report)
 
-cd /opt/qc_report_generator
+cd /opt/siqc
 mkdir src/data
 
 echo "Compressing input data..."
