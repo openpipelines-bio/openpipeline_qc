@@ -3458,10 +3458,10 @@ meta = [
   },
   "repositories" : [
     {
-      "type" : "github",
+      "type" : "vsh",
       "name" : "openpipeline",
-      "repo" : "openpipelines-bio/openpipeline",
-      "tag" : "2.1.2"
+      "repo" : "openpipeline",
+      "tag" : "v3.0.0"
     },
     {
       "type" : "vsh",
@@ -3610,7 +3610,7 @@ meta = [
     "engine" : "docker",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/_private/nextflow/ingestion_qc/h5mu_to_qc_json",
     "viash_version" : "0.9.4",
-    "git_commit" : "d0daff1e8f2e19220b061f298ba0f3c82921146f",
+    "git_commit" : "e325055c664d729466c1b8601b39b94101d78405",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3627,10 +3627,10 @@ meta = [
     },
     "repositories" : [
       {
-        "type" : "github",
+        "type" : "vsh",
         "name" : "openpipeline",
-        "repo" : "openpipelines-bio/openpipeline",
-        "tag" : "2.1.2"
+        "repo" : "openpipeline",
+        "tag" : "v3.0.0"
       },
       {
         "type" : "vsh",

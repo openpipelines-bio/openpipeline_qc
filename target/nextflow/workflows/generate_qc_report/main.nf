@@ -3387,26 +3387,26 @@ meta = [
     {
       "name" : "metadata/add_id",
       "repository" : {
-        "type" : "github",
-        "repo" : "openpipelines-bio/openpipeline",
-        "tag" : "2.1.2"
+        "type" : "vsh",
+        "repo" : "openpipeline",
+        "tag" : "v3.0.0"
       }
     },
     {
       "name" : "workflows/qc/qc",
       "repository" : {
-        "type" : "github",
-        "repo" : "openpipelines-bio/openpipeline",
-        "tag" : "2.1.2"
+        "type" : "vsh",
+        "repo" : "openpipeline",
+        "tag" : "v3.0.0"
       }
     },
     {
       "name" : "correction/cellbender_remove_background",
       "alias" : "cellbender",
       "repository" : {
-        "type" : "github",
-        "repo" : "openpipelines-bio/openpipeline",
-        "tag" : "2.1.2"
+        "type" : "vsh",
+        "repo" : "openpipeline",
+        "tag" : "v3.0.0"
       }
     },
     {
@@ -3432,10 +3432,10 @@ meta = [
   ],
   "repositories" : [
     {
-      "type" : "github",
+      "type" : "vsh",
       "name" : "openpipeline",
-      "repo" : "openpipelines-bio/openpipeline",
-      "tag" : "2.1.2"
+      "repo" : "openpipeline",
+      "tag" : "v3.0.0"
     },
     {
       "type" : "vsh",
@@ -3532,7 +3532,7 @@ meta = [
     "engine" : "native",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/workflows/generate_qc_report",
     "viash_version" : "0.9.4",
-    "git_commit" : "d0daff1e8f2e19220b061f298ba0f3c82921146f",
+    "git_commit" : "e325055c664d729466c1b8601b39b94101d78405",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3549,10 +3549,10 @@ meta = [
     },
     "repositories" : [
       {
-        "type" : "github",
+        "type" : "vsh",
         "name" : "openpipeline",
-        "repo" : "openpipelines-bio/openpipeline",
-        "tag" : "2.1.2"
+        "repo" : "openpipeline",
+        "tag" : "v3.0.0"
       },
       {
         "type" : "vsh",
@@ -3578,9 +3578,9 @@ meta = [
 
 // resolve dependencies dependencies (if any)
 meta["root_dir"] = getRootDir()
-include { add_id } from "${meta.root_dir}/dependencies/github/openpipelines-bio/openpipeline/2.1.2/nextflow/metadata/add_id/main.nf"
-include { qc } from "${meta.root_dir}/dependencies/github/openpipelines-bio/openpipeline/2.1.2/nextflow/workflows/qc/qc/main.nf"
-include { cellbender_remove_background as cellbender_viashalias } from "${meta.root_dir}/dependencies/github/openpipelines-bio/openpipeline/2.1.2/nextflow/correction/cellbender_remove_background/main.nf"
+include { add_id } from "${meta.root_dir}/dependencies/vsh/vsh/openpipeline/v3.0.0/nextflow/metadata/add_id/main.nf"
+include { qc } from "${meta.root_dir}/dependencies/vsh/vsh/openpipeline/v3.0.0/nextflow/workflows/qc/qc/main.nf"
+include { cellbender_remove_background as cellbender_viashalias } from "${meta.root_dir}/dependencies/vsh/vsh/openpipeline/v3.0.0/nextflow/correction/cellbender_remove_background/main.nf"
 cellbender = cellbender_viashalias.run(key: "cellbender")
 include { h5mu_to_qc_json } from "${meta.resources_dir}/../../../_private/nextflow/ingestion_qc/h5mu_to_qc_json/main.nf"
 include { generate_html } from "${meta.resources_dir}/../../../nextflow/ingestion_qc/generate_html/main.nf"
