@@ -12,21 +12,7 @@ OpenPipeline QC contains an extensible workflow for the generation of a stand-al
 
 ### 1. QC Metrics Calculation
 
-The workflow calculates extensive ingestion QC metrics, including:
-
-**Observation level metrics:**
-- `total_{var_type}_by_{expr_type}` - E.g. "total_genes_by_counts". Number of genes with positive counts in a cell.
-- `total_{expr_type}` - E.g. "total_counts". Total number of counts for a cell.
-- `pct_{expr_type}_in_top_{n}_{var_type}` - E.g. "pct_counts_in_top_50_genes". Cumulative percentage of counts for 50 most expressed genes in a cell.
-- `total_{expr_type}_{qc_var}` - E.g. "total_counts_mito". Total number of counts for variables in qc_vars.
-- `pct_{expr_type}_{qc_var}` - E.g. "pct_counts_mito". Proportion of total counts for a cell which are mitochondrial.
-
-**Variable level metrics:**
-- `total_{expr_type}` - E.g. "total_counts". Sum of counts for a gene.
-- `n_genes_by_{expr_type}` - E.g. "n_genes_by_counts". The number of genes with at least 1 count in a cell.
-- `mean_{expr_type}` - E.g. "mean_counts". Mean expression over all cells.
-- `n_cells_by_{expr_type}` - E.g. "n_cells_by_counts". Number of cells this expression is measured in.
-- `pct_dropout_by_{expr_type}` - E.g. "pct_dropout_by_counts". Percentage of cells this feature does not appear in.
+The workflow calculates extensive ingestion QC metrics at both the observation and feature levels. **Observation-level metrics** include total counts per cell, gene detection rates, mitochondrial and ribosomal gene percentages, and expression concentration in top genes. **Feature-level metrics** cover gene expression summaries such as total counts per gene, detection rates across cells, mean expression levels, and dropout percentages.
 
 **Spatial data metrics:**
 For spatial data, the workflow also surfaces segmentation metrics.
