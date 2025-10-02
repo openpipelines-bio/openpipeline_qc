@@ -1,4 +1,4 @@
-# openpipeline_qc x.x.x
+# openpipeline_qc 0.1.1
 
 ## MINOR CHANGES
 
