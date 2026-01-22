@@ -132,6 +132,12 @@ test_resources:
   - type: nextflow_script
     path: test.nf
     entrypoint: test_with_cellbender
+  - type: nextflow_script
+    path: test.nf
+    entrypoint: test_xenium
+  - type: nextflow_script
+    path: test.nf
+    entrypoint: test_cosmx
 
 dependencies:
   - name: metadata/add_id
