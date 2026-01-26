@@ -35,3 +35,10 @@ nextflow run . \
   -entry test_multiple_reports \
   -c src/configs/labels_ci.config \
   -resume
+
+nextflow run . \
+  -main-script src/workflows/generate_qc_report/test.nf \
+  -profile docker,no_publish,local \
+  -entry test_cosmx \
+  -c src/configs/labels_ci.config \
+  -resume

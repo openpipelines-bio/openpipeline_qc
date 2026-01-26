@@ -1,5 +1,9 @@
 # openpipeline_qc 0.2.0
 
+## NEW FEATURES
+
+* Add support for CosMx data in the QC Reporting workflow (PR #12).
+
 ## MINOR CHANGES
 
 * `src/workflows/generate_qc_report`: Add min and max constraints to `--max_samples_per_report`, to limit the number of samples per report between 1 and 20 (PR #11).
