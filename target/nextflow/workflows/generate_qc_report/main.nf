@@ -3391,7 +3391,7 @@ meta = [
       "repository" : {
         "type" : "vsh",
         "repo" : "openpipeline",
-        "tag" : "v3.0.0"
+        "tag" : "v4.0.0"
       }
     },
     {
@@ -3399,7 +3399,7 @@ meta = [
       "repository" : {
         "type" : "vsh",
         "repo" : "openpipeline",
-        "tag" : "v3.0.0"
+        "tag" : "v4.0.0"
       }
     },
     {
@@ -3408,7 +3408,7 @@ meta = [
       "repository" : {
         "type" : "vsh",
         "repo" : "openpipeline",
-        "tag" : "v3.0.0"
+        "tag" : "v4.0.0"
       }
     },
     {
@@ -3437,7 +3437,7 @@ meta = [
       "type" : "vsh",
       "name" : "openpipeline",
       "repo" : "openpipeline",
-      "tag" : "v3.0.0"
+      "tag" : "v4.0.0"
     },
     {
       "type" : "vsh",
@@ -3534,7 +3534,7 @@ meta = [
     "engine" : "native",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/workflows/generate_qc_report",
     "viash_version" : "0.9.4",
-    "git_commit" : "645ae32357aa064160bc7c855679e42a0b9aaac8",
+    "git_commit" : "115ef4bb01e2bd0b7fd7dc0b9fb7cce947d39f17",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3554,7 +3554,7 @@ meta = [
         "type" : "vsh",
         "name" : "openpipeline",
         "repo" : "openpipeline",
-        "tag" : "v3.0.0"
+        "tag" : "v4.0.0"
       },
       {
         "type" : "vsh",
@@ -3580,9 +3580,9 @@ meta = [
 
 // resolve dependencies dependencies (if any)
 meta["root_dir"] = getRootDir()
-include { add_id } from "${meta.root_dir}/dependencies/vsh/vsh/openpipeline/v3.0.0/nextflow/metadata/add_id/main.nf"
-include { qc } from "${meta.root_dir}/dependencies/vsh/vsh/openpipeline/v3.0.0/nextflow/workflows/qc/qc/main.nf"
-include { cellbender_remove_background as cellbender_viashalias } from "${meta.root_dir}/dependencies/vsh/vsh/openpipeline/v3.0.0/nextflow/correction/cellbender_remove_background/main.nf"
+include { add_id } from "${meta.root_dir}/dependencies/vsh/vsh/openpipeline/v4.0.0/nextflow/metadata/add_id/main.nf"
+include { qc } from "${meta.root_dir}/dependencies/vsh/vsh/openpipeline/v4.0.0/nextflow/workflows/qc/qc/main.nf"
+include { cellbender_remove_background as cellbender_viashalias } from "${meta.root_dir}/dependencies/vsh/vsh/openpipeline/v4.0.0/nextflow/correction/cellbender_remove_background/main.nf"
 cellbender = cellbender_viashalias.run(key: "cellbender")
 include { h5mu_to_qc_json } from "${meta.resources_dir}/../../../_private/nextflow/ingestion_qc/h5mu_to_qc_json/main.nf"
 include { generate_html } from "${meta.resources_dir}/../../../nextflow/ingestion_qc/generate_html/main.nf"

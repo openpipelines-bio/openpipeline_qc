@@ -1,6 +1,6 @@
 name: "cellbender_remove_background"
 namespace: "correction"
-version: "v3.0.0"
+version: "v4.0.0"
 argument_groups:
 - name: "Inputs"
   arguments:
@@ -578,7 +578,7 @@ engines:
   id: "docker"
   image: "nvcr.io/nvidia/cuda:11.8.0-devel-ubuntu22.04"
   target_registry: "images.viash-hub.com"
-  target_tag: "v3.0.0"
+  target_tag: "v4.0.0"
   namespace_separator: "/"
   setup:
   - type: "docker"
@@ -611,12 +611,11 @@ build_info:
   output: "target/nextflow/correction/cellbender_remove_background"
   executable: "target/nextflow/correction/cellbender_remove_background/main.nf"
   viash_version: "0.9.4"
-  git_commit: "e92e56b49125af8ef2ebb11586191a6cbf9a8457"
+  git_commit: "de02293c9e13198622b988dac952b2c8c70a1e35"
   git_remote: "https://github.com/openpipelines-bio/openpipeline"
-  git_tag: "0.2.0-2059-ge92e56b4"
 package_config:
   name: "openpipeline"
-  version: "v3.0.0"
+  version: "v4.0.0"
   summary: "Best-practice workflows for single-cell multi-omics analyses.\n"
   description: "OpenPipelines are extensible single cell analysis pipelines for reproducible\
     \ and large-scale single cell processing using [Viash](https://viash.io) and [Nextflow](https://www.nextflow.io/).\n\
@@ -646,7 +645,7 @@ package_config:
     )'"
   - ".engines += { type: \"native\" }"
   - ".engines[.type == 'docker'].target_registry := 'images.viash-hub.com'"
-  - ".engines[.type == 'docker'].target_tag := 'v3.0.0'"
+  - ".engines[.type == 'docker'].target_tag := 'v4.0.0'"
   keywords:
   - "single-cell"
   - "multimodal"

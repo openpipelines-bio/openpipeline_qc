@@ -3230,7 +3230,7 @@ meta = [
       "type" : "vsh",
       "name" : "openpipeline",
       "repo" : "openpipeline",
-      "tag" : "v3.0.0"
+      "tag" : "v4.0.0"
     },
     {
       "type" : "vsh",
@@ -3341,7 +3341,7 @@ meta = [
         {
           "type" : "docker",
           "run" : [
-            "npm install -g pnpm@latest-10 \\\\\n&& cd /opt && git clone -b v0.1.0 https://github.com/openpipelines-bio/siqc.git \\\\\n&& cd siqc && pnpm install \\\\\n&& true\n"
+            "cd /opt && git clone -b v0.2.0 https://github.com/openpipelines-bio/siqc.git \\\\\n&& cd siqc && npm install \\\\\n&& true\n"
           ]
         }
       ]
@@ -3353,7 +3353,7 @@ meta = [
     "engine" : "docker",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/ingestion_qc/generate_html",
     "viash_version" : "0.9.4",
-    "git_commit" : "645ae32357aa064160bc7c855679e42a0b9aaac8",
+    "git_commit" : "115ef4bb01e2bd0b7fd7dc0b9fb7cce947d39f17",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3373,7 +3373,7 @@ meta = [
         "type" : "vsh",
         "name" : "openpipeline",
         "repo" : "openpipeline",
-        "tag" : "v3.0.0"
+        "tag" : "v4.0.0"
       },
       {
         "type" : "vsh",
@@ -3438,17 +3438,7 @@ ABSOLUTE_OUTPUT=\\$(realpath \\$par_output_qc_report)
 cd /opt/siqc
 mkdir src/data
 
-echo "Compressing input data..."
-pnpm run compress_data "\\$ABSOLUTE_INPUT_DATA" "src/data/dataset.ts"
-
-echo "Compressing report structure..."
-pnpm run compress_data "\\$ABSOLUTE_INPUT_STRUCTURE" "src/data/report_structure.ts"
-
-echo "Generating HTML..."
-pnpm run build
-
-echo "Copying HTML to output directory..."
-cp dist/index.html "\\$ABSOLUTE_OUTPUT"
+npm run cli render -- --data "\\$ABSOLUTE_INPUT_DATA" --structure "\\$ABSOLUTE_INPUT_STRUCTURE" --output "\\$ABSOLUTE_OUTPUT"
 VIASHMAIN
 bash "$tempscript"
 '''
