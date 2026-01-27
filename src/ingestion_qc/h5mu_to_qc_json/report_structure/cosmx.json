@@ -144,6 +144,66 @@
           "nBins": 50,
           "groupBy": "sample_id",
           "yAxisType": "linear"
+        },
+        {
+          "type": "histogram",
+          "visualizationType": "histogram",
+          "field": "Max.DAPI",
+          "label": "Max DAPI Intensity",
+          "description": "Maximum intensity of DAPI stain.",
+          "cutoffMin": null,
+          "cutoffMax": null,
+          "nBins": 50,
+          "groupBy": "sample_id",
+          "yAxisType": "linear"
+        },
+        {
+          "type": "histogram",
+          "visualizationType": "histogram",
+          "field": "Max.MembraneStain",
+          "label": "Max Membrane Stain Intensity",
+          "description": "Maximum intensity of Membrane stain.",
+          "cutoffMin": null,
+          "cutoffMax": null,
+          "nBins": 50,
+          "groupBy": "sample_id",
+          "yAxisType": "linear"
+        },
+        {
+          "type": "histogram",
+          "visualizationType": "histogram",
+          "field": "Max.PanCK",
+          "label": "Max PanCK Intensity",
+          "description": "Maximum intensity of PanCK stain.",
+          "cutoffMin": null,
+          "cutoffMax": null,
+          "nBins": 50,
+          "groupBy": "sample_id",
+          "yAxisType": "linear"
+        },
+        {
+          "type": "histogram",
+          "visualizationType": "histogram",
+          "field": "Max.CD45",
+          "label": "Max CD45 Intensity",
+          "description": "Maximum intensity of CD45 stain.",
+          "cutoffMin": null,
+          "cutoffMax": null,
+          "nBins": 50,
+          "groupBy": "sample_id",
+          "yAxisType": "linear"
+        },
+        {
+          "type": "histogram",
+          "visualizationType": "histogram",
+          "field": "Max.CD3",
+          "label": "Max CD3 Intensity",
+          "description": "Maximum intensity of CD3 stain.",
+          "cutoffMin": null,
+          "cutoffMax": null,
+          "nBins": 50,
+          "groupBy": "sample_id",
+          "yAxisType": "linear"
         }
       ]
     }
