@@ -5,14 +5,4 @@ ABSOLUTE_OUTPUT=$(realpath $par_output_qc_report)
 cd /opt/siqc
 mkdir src/data
 
-echo "Compressing input data..."
-pnpm run compress_data "$ABSOLUTE_INPUT_DATA" "src/data/dataset.ts"
-
-echo "Compressing report structure..."
-pnpm run compress_data "$ABSOLUTE_INPUT_STRUCTURE" "src/data/report_structure.ts"
-
-echo "Generating HTML..."
-pnpm run build
-
-echo "Copying HTML to output directory..."
-cp dist/index.html "$ABSOLUTE_OUTPUT"
+npm run cli render -- --data "$ABSOLUTE_INPUT_DATA" --structure "$ABSOLUTE_INPUT_STRUCTURE" --output "$ABSOLUTE_OUTPUT"

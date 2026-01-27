@@ -52,9 +52,8 @@ engines:
           - git
       - type: docker
         run: |
-          npm install -g pnpm@latest-10 \
-          && cd /opt && git clone -b v0.2.0 https://github.com/openpipelines-bio/siqc.git \
-          && cd siqc && pnpm install \
+          cd /opt && git clone -b v0.2.0 https://github.com/openpipelines-bio/siqc.git \
+          && cd siqc && npm install \
           && true
 
 runners:
