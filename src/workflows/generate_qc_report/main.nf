@@ -154,7 +154,14 @@ workflow run_wf {
         ingestion_method: "ingestion_method",
         obs_metadata: "obs_metadata",
         min_total_counts: "min_total_counts",
-        min_num_nonzero_vars: "min_num_nonzero_vars"
+        min_num_nonzero_vars: "min_num_nonzero_vars",
+        obs_area: "obs_area",
+        obs_aspect_ratio: "obs_aspect_ratio",
+        obs_dapi_stain: "obs_dapi_stain",
+        obs_membrane_stain: "obs_membrane_stain",
+        obs_panck_stain: "obs_panck_stain",
+        obs_cd45_stain: "obs_cd45_stain",
+        obs_cd3_stain: "obs_cd3_stain",
       ],
       args: [
         obs_sample_id: "sample_id",
