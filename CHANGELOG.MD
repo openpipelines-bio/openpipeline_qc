@@ -1,3 +1,9 @@
+# openpipeline_qc x.x.x
+
+## MINOR CHANGES
+
+* Added support for Visium data ingestion and QC reporting (PR #16).
+
 # openpipeline_qc 0.2.0
 
 ## MINOR CHANGES
