@@ -36,6 +36,7 @@ argument_groups:
           - cellranger_multi
           - xenium
           - cosmx
+          - visium
       - name: --sample_metadata
         type: file
         required: false
@@ -174,6 +175,7 @@ test_resources:
   - type: nextflow_script
     path: test.nf
     entrypoint: test_cosmx
+    entrypoint: test_visium
 
 dependencies:
   - name: metadata/add_id

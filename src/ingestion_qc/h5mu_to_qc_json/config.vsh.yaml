@@ -35,6 +35,7 @@ argument_groups:
           - cellranger_multi
           - xenium
           - cosmx
+          - visium
         description: Method that was used to ingest the data - this will define the structure of the report that is generated.
       - name: --obs_sample_id
         type: string

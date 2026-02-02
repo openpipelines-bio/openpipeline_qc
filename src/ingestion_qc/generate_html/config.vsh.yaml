@@ -52,7 +52,7 @@ engines:
           - git
       - type: docker
         run: |
-          cd /opt && git clone -b v0.2.0 https://github.com/openpipelines-bio/siqc.git \
+          cd /opt && git clone -b v0.2.1 https://github.com/openpipelines-bio/siqc.git \
           && cd siqc && npm install \
           && true
 
