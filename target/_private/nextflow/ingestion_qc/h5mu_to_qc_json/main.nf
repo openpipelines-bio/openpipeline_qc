@@ -3163,6 +3163,7 @@ meta = [
           "choices" : [
             "cellranger_multi",
             "xenium",
+            "cosmx",
             "visium"
           ],
           "direction" : "input",
@@ -3413,6 +3414,100 @@ meta = [
           "multiple_sep" : ";"
         }
       ]
+    },
+    {
+      "name" : "Options for CosMx reports",
+      "arguments" : [
+        {
+          "type" : "string",
+          "name" : "--obs_area",
+          "description" : "The key in the h5mu .obs field that contains the cell area.",
+          "default" : [
+            "Area"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : false,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_aspect_ratio",
+          "description" : "The key in the h5mu .obs field that contains the aspect ratio.",
+          "default" : [
+            "AspectRatio"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : false,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_dapi_stain",
+          "description" : "The keys in the h5mu .obs field that contains the DAPI stain intensity.",
+          "default" : [
+            "Mean.DAPI",
+            "Max.DAPI"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_membrane_stain",
+          "description" : "The keys in the h5mu .obs field that contains the membrane stain intensity.",
+          "default" : [
+            "Mean.MembraneStain",
+            "Max.MembraneStain"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_panck_stain",
+          "description" : "The keys in the h5mu .obs field that contains the PanCK stain intensity.",
+          "default" : [
+            "Mean.PanCK",
+            "Max.PanCK"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_cd45_stain",
+          "description" : "The keys in the h5mu .obs field that contains the CD45 stain intensity.",
+          "default" : [
+            "Mean.CD45",
+            "Max.CD45"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_cd3_stain",
+          "description" : "The keys in the h5mu .obs field that contains the CD3 stain intensity.",
+          "default" : [
+            "Mean.CD3",
+            "Max.CD3"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
+          "multiple_sep" : ";"
+        }
+      ]
     }
   ],
   "resources" : [
@@ -3611,7 +3706,7 @@ meta = [
     "engine" : "docker",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/_private/nextflow/ingestion_qc/h5mu_to_qc_json",
     "viash_version" : "0.9.4",
-    "git_commit" : "791ad93f82f1e5ace3c6505d80d4cb9c37a89d30",
+    "git_commit" : "088ba7450b3ad4894b7060711fa7cd89b615805b",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3696,7 +3791,14 @@ par = {
   'obs_x_coord': $( if [ ! -z ${VIASH_PAR_OBS_X_COORD+x} ]; then echo "r'${VIASH_PAR_OBS_X_COORD//\\'/\\'\\"\\'\\"r\\'}'"; else echo None; fi ),
   'obs_y_coord': $( if [ ! -z ${VIASH_PAR_OBS_Y_COORD+x} ]; then echo "r'${VIASH_PAR_OBS_Y_COORD//\\'/\\'\\"\\'\\"r\\'}'"; else echo None; fi ),
   'obs_control_probe_counts': $( if [ ! -z ${VIASH_PAR_OBS_CONTROL_PROBE_COUNTS+x} ]; then echo "r'${VIASH_PAR_OBS_CONTROL_PROBE_COUNTS//\\'/\\'\\"\\'\\"r\\'}'"; else echo None; fi ),
-  'obs_control_codeword_counts': $( if [ ! -z ${VIASH_PAR_OBS_CONTROL_CODEWORD_COUNTS+x} ]; then echo "r'${VIASH_PAR_OBS_CONTROL_CODEWORD_COUNTS//\\'/\\'\\"\\'\\"r\\'}'"; else echo None; fi )
+  'obs_control_codeword_counts': $( if [ ! -z ${VIASH_PAR_OBS_CONTROL_CODEWORD_COUNTS+x} ]; then echo "r'${VIASH_PAR_OBS_CONTROL_CODEWORD_COUNTS//\\'/\\'\\"\\'\\"r\\'}'"; else echo None; fi ),
+  'obs_area': $( if [ ! -z ${VIASH_PAR_OBS_AREA+x} ]; then echo "r'${VIASH_PAR_OBS_AREA//\\'/\\'\\"\\'\\"r\\'}'"; else echo None; fi ),
+  'obs_aspect_ratio': $( if [ ! -z ${VIASH_PAR_OBS_ASPECT_RATIO+x} ]; then echo "r'${VIASH_PAR_OBS_ASPECT_RATIO//\\'/\\'\\"\\'\\"r\\'}'"; else echo None; fi ),
+  'obs_dapi_stain': $( if [ ! -z ${VIASH_PAR_OBS_DAPI_STAIN+x} ]; then echo "r'${VIASH_PAR_OBS_DAPI_STAIN//\\'/\\'\\"\\'\\"r\\'}'.split(';')"; else echo None; fi ),
+  'obs_membrane_stain': $( if [ ! -z ${VIASH_PAR_OBS_MEMBRANE_STAIN+x} ]; then echo "r'${VIASH_PAR_OBS_MEMBRANE_STAIN//\\'/\\'\\"\\'\\"r\\'}'.split(';')"; else echo None; fi ),
+  'obs_panck_stain': $( if [ ! -z ${VIASH_PAR_OBS_PANCK_STAIN+x} ]; then echo "r'${VIASH_PAR_OBS_PANCK_STAIN//\\'/\\'\\"\\'\\"r\\'}'.split(';')"; else echo None; fi ),
+  'obs_cd45_stain': $( if [ ! -z ${VIASH_PAR_OBS_CD45_STAIN+x} ]; then echo "r'${VIASH_PAR_OBS_CD45_STAIN//\\'/\\'\\"\\'\\"r\\'}'.split(';')"; else echo None; fi ),
+  'obs_cd3_stain': $( if [ ! -z ${VIASH_PAR_OBS_CD3_STAIN+x} ]; then echo "r'${VIASH_PAR_OBS_CD3_STAIN//\\'/\\'\\"\\'\\"r\\'}'.split(';')"; else echo None; fi )
 }
 meta = {
   'name': $( if [ ! -z ${VIASH_META_NAME+x} ]; then echo "r'${VIASH_META_NAME//\\'/\\'\\"\\'\\"r\\'}'"; else echo None; fi ),
@@ -3730,6 +3832,11 @@ from setup_logger import setup_logger
 logger = setup_logger()
 
 par["obs_cellbender"] = {} if not par["obs_cellbender"] else par["obs_cellbender"]
+par["obs_dapi_stain"] = [] if not par["obs_dapi_stain"] else par["obs_dapi_stain"]
+par["obs_membrane_stain"] = [] if not par["obs_membrane_stain"] else par["obs_membrane_stain"]
+par["obs_panck_stain"] = [] if not par["obs_panck_stain"] else par["obs_panck_stain"]
+par["obs_cd45_stain"] = [] if not par["obs_cd45_stain"] else par["obs_cd45_stain"]
+par["obs_cd3_stain"] = [] if not par["obs_cd3_stain"] else par["obs_cd3_stain"]
 
 
 def transform_df(df):
@@ -3946,6 +4053,60 @@ def generate_visium_stats(mod_obs, sample_id, required_keys):
     return cell_rna_stats
 
 
+def format_cosmx_columns(mod_obs):
+
+    cosmx_obs_keys = [par["obs_area"], par["obs_aspect_ratio"]]
+    
+    # Add multiple keys
+    for key_list in [par["obs_dapi_stain"], par["obs_membrane_stain"], par["obs_panck_stain"],
+                     par["obs_cd45_stain"], par["obs_cd3_stain"]]:
+                     if key_list:
+                         cosmx_obs_keys.extend(key_list)
+                     
+    # Check if keys are present
+    check_optional_obs_keys(mod_obs, cosmx_obs_keys, "CosMx metrics.")
+    
+    # Filter only existing keys
+    cosmx_formatted_columns = [key for key in cosmx_obs_keys if key in mod_obs]
+    
+    # Add coordinates
+    cosmx_formatted_columns.extend(["x_coord", "y_coord"])
+    
+    for key in cosmx_formatted_columns:
+        if key in mod_obs:
+            if not pd.api.types.is_float_dtype(mod_obs[key]):
+                try:
+                    mod_obs[key] = mod_obs[key].astype("float16")
+                except ValueError:
+                    logger.warning(f"Could not convert column {key} to a float dtype.")
+
+    return mod_obs, cosmx_formatted_columns
+
+
+def generate_cosmx_stats(mod_obs, sample_id, required_keys):
+    
+    # Format required columns
+    mod_obs = format_required_columns(required_keys, mod_obs)
+
+    # Format cosmx-specific columns
+    mod_obs, cosmx_formatted_columns = format_cosmx_columns(mod_obs)
+
+    # Fetch and format  all categorical columns for grouping
+    metadata_obs_keys, mod_obs = format_categorical_columns(mod_obs)
+
+    # Create cell RNA stats dataframe
+    cell_rna_stats = pd.DataFrame(
+        {
+            "sample_id": pd.Categorical(sample_id),
+            **{key: mod_obs[key] for key in required_keys},
+            **{key: mod_obs[key] for key in cosmx_formatted_columns},
+            **{key: mod_obs[key] for key in metadata_obs_keys}
+        }
+    )
+
+    return cell_rna_stats
+
+
 def concatenate_dataframes(dfs):
     \'\'\'Concatenates a list of dataframes into a single dataframe, preserving categorical columns.\'\'\'
     df = pd.concat(dfs, ignore_index=True)
@@ -3985,7 +4146,7 @@ def main(par):
         barcodes_original_count = mod_obs.shape[0]
 
         # Add coordinates to obs before filtering
-        if par["ingestion_method"] == "xenium" or par["ingestion_method"] == "visium":
+        if par["ingestion_method"] == "xenium" or par["ingestion_method"] == "visium" or par["ingestion_method"] == "cosmx":
             mod_obs["x_coord"] = mod_obsm["spatial"][:, 0]
             mod_obs["y_coord"] = mod_obsm["spatial"][:, 1]
 
@@ -4042,6 +4203,9 @@ def main(par):
         
         if par["ingestion_method"] == "visium":
             cell_rna_stats = generate_visium_stats(mod_obs, sample_id, required_keys)
+        
+        if par["ingestion_method"] == "cosmx":
+            cell_rna_stats = generate_cosmx_stats(mod_obs, sample_id, required_keys)
 
         cell_stats_dfs.append(cell_rna_stats)
         sample_stats_dfs.append(sample_summary_stats)
@@ -4077,7 +4241,8 @@ def main(par):
     report_structures = {
         "cellranger_multi": os.path.join(meta["resources_dir"], "report_structure/cellranger.json"),
         "xenium": os.path.join(meta["resources_dir"], "report_structure/xenium.json"),
-        "visium": os.path.join(meta["resources_dir"], "report_structure/visium.json")
+        "visium": os.path.join(meta["resources_dir"], "report_structure/visium.json"),
+        "cosmx": os.path.join(meta["resources_dir"], "report_structure/cosmx.json")
     }
 
     logger.info(f"Writing output report structure json to {par['output_reporting_json']}")

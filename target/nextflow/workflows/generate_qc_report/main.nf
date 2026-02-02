@@ -3162,6 +3162,7 @@ meta = [
           "choices" : [
             "cellranger_multi",
             "xenium",
+            "cosmx",
             "visium"
           ],
           "direction" : "input",
@@ -3310,6 +3311,100 @@ meta = [
           "required" : false,
           "direction" : "input",
           "multiple" : false,
+          "multiple_sep" : ";"
+        }
+      ]
+    },
+    {
+      "name" : "Options for CosMx reports",
+      "arguments" : [
+        {
+          "type" : "string",
+          "name" : "--obs_area",
+          "description" : "The key in the h5mu .obs field that contains the cell area.",
+          "default" : [
+            "Area"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : false,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_aspect_ratio",
+          "description" : "The key in the h5mu .obs field that contains the aspect ratio.",
+          "default" : [
+            "AspectRatio"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : false,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_dapi_stain",
+          "description" : "The keys in the h5mu .obs field that contains the DAPI stain intensity.",
+          "default" : [
+            "Mean.DAPI",
+            "Max.DAPI"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_membrane_stain",
+          "description" : "The keys in the h5mu .obs field that contains the membrane stain intensity.",
+          "default" : [
+            "Mean.MembraneStain",
+            "Max.MembraneStain"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_panck_stain",
+          "description" : "The keys in the h5mu .obs field that contains the PanCK stain intensity.",
+          "default" : [
+            "Mean.PanCK",
+            "Max.PanCK"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_cd45_stain",
+          "description" : "The keys in the h5mu .obs field that contains the CD45 stain intensity.",
+          "default" : [
+            "Mean.CD45",
+            "Max.CD45"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
+          "multiple_sep" : ";"
+        },
+        {
+          "type" : "string",
+          "name" : "--obs_cd3_stain",
+          "description" : "The keys in the h5mu .obs field that contains the CD3 stain intensity.",
+          "default" : [
+            "Mean.CD3",
+            "Max.CD3"
+          ],
+          "required" : false,
+          "direction" : "input",
+          "multiple" : true,
           "multiple_sep" : ";"
         }
       ]
@@ -3547,7 +3642,7 @@ meta = [
     "engine" : "native",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/workflows/generate_qc_report",
     "viash_version" : "0.9.4",
-    "git_commit" : "791ad93f82f1e5ace3c6505d80d4cb9c37a89d30",
+    "git_commit" : "088ba7450b3ad4894b7060711fa7cd89b615805b",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3759,7 +3854,14 @@ workflow run_wf {
         ingestion_method: "ingestion_method",
         obs_metadata: "obs_metadata",
         min_total_counts: "min_total_counts",
-        min_num_nonzero_vars: "min_num_nonzero_vars"
+        min_num_nonzero_vars: "min_num_nonzero_vars",
+        obs_area: "obs_area",
+        obs_aspect_ratio: "obs_aspect_ratio",
+        obs_dapi_stain: "obs_dapi_stain",
+        obs_membrane_stain: "obs_membrane_stain",
+        obs_panck_stain: "obs_panck_stain",
+        obs_cd45_stain: "obs_cd45_stain",
+        obs_cd3_stain: "obs_cd3_stain",
       ],
       args: [
         obs_sample_id: "sample_id",

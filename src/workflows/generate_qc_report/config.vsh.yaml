@@ -35,6 +35,7 @@ argument_groups:
         choices:
           - cellranger_multi
           - xenium
+          - cosmx
           - visium
       - name: --sample_metadata
         type: file
@@ -103,6 +104,42 @@ argument_groups:
         required: false
         description: Number of epochs to train cellbender. 
         default: 150
+
+  - name: Options for CosMx reports
+    arguments:
+      - name: --obs_area
+        type: string
+        description: The key in the h5mu .obs field that contains the cell area.
+        default: Area
+      - name: --obs_aspect_ratio
+        type: string
+        description: The key in the h5mu .obs field that contains the aspect ratio.
+        default: AspectRatio
+      - name: --obs_dapi_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the DAPI stain intensity.
+        default: [Mean.DAPI, Max.DAPI]
+      - name: --obs_membrane_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the membrane stain intensity.
+        default: [Mean.MembraneStain, Max.MembraneStain]
+      - name: --obs_panck_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the PanCK stain intensity.
+        default: [Mean.PanCK, Max.PanCK]
+      - name: --obs_cd45_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the CD45 stain intensity.
+        default: [Mean.CD45, Max.CD45]
+      - name: --obs_cd3_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the CD3 stain intensity.
+        default: [Mean.CD3, Max.CD3]
   
   - name: Outputs
     arguments:
@@ -137,6 +174,7 @@ test_resources:
     entrypoint: test_xenium
   - type: nextflow_script
     path: test.nf
+    entrypoint: test_cosmx
     entrypoint: test_visium
 
 dependencies:

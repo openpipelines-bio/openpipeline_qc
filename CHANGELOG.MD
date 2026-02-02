@@ -1,5 +1,9 @@
 # openpipeline_qc 0.2.0
 
+## NEW FEATURES
+
+* Add support for CosMx data in the QC Reporting workflow (PR #12).
+
 ## MINOR CHANGES
 
 * Added support for Visium data ingestion and QC reporting (PR #16).

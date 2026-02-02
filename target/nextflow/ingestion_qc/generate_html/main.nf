@@ -3353,7 +3353,7 @@ meta = [
     "engine" : "docker",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/ingestion_qc/generate_html",
     "viash_version" : "0.9.4",
-    "git_commit" : "791ad93f82f1e5ace3c6505d80d4cb9c37a89d30",
+    "git_commit" : "088ba7450b3ad4894b7060711fa7cd89b615805b",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {

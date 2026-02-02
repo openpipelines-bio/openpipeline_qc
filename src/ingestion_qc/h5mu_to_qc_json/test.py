@@ -140,5 +140,43 @@ def test_xenium_execution(run_component, tmp_path):
             assert {"name", "dtype", "data"}.issubset(col.keys())
 
 
+def test_cosmx_execution(run_component, tmp_path):
+    output_json_path = tmp_path / "output.json"
+    output_reporting_json_path = tmp_path / "output_reporting.json"
+
+    run_component(
+        [
+            "--input", meta["resources_dir"] + "/resources_test/spatial_qc_sample_data/Lung5_Rep2_tiny.qc.h5mu",
+            "--ingestion_method", "cosmx",
+            "--min_num_nonzero_vars", "1",
+            "--output", output_json_path,
+            "--output_reporting_json", output_reporting_json_path
+        ]
+    )
+
+    assert os.path.exists(output_json_path), "Output file was not created"
+
+    with open(output_json_path, "r") as f:
+        output_json_dict = json.load(f)
+
+    assert output_json_dict.keys() == {"cell_rna_stats", "sample_summary_stats"}
+    assert "metrics_cellranger_stats" not in output_json_dict.keys()
+
+    column_names_cell = [col["name"] for col in output_json_dict["cell_rna_stats"]["columns"]]
+    expected_column_names = [
+        "sample_id", "total_counts", "num_nonzero_vars",
+        "fraction_mitochondrial",  "fraction_ribosomal",
+        "Area", "AspectRatio",
+        "Mean.DAPI", "Mean.MembraneStain",
+        "x_coord", "y_coord", "fov"
+        ]
+    assert np.all([column in column_names_cell for column in expected_column_names])
+
+    for key in output_json_dict.keys():
+        assert output_json_dict[key].keys() == {"num_rows", "num_cols", "min_total_counts", "min_num_nonzero_vars", "columns"}
+        for col in output_json_dict[key]["columns"]:
+            assert {"name", "dtype", "data"}.issubset(col.keys())
+
+
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__]))

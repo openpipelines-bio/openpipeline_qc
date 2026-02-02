@@ -34,6 +34,7 @@ argument_groups:
         choices:
           - cellranger_multi
           - xenium
+          - cosmx
           - visium
         description: Method that was used to ingest the data - this will define the structure of the report that is generated.
       - name: --obs_sample_id
@@ -133,7 +134,41 @@ argument_groups:
         description: The key in the h5mu .obs field that contains the number of control codewords.
         default: control_codeword_counts  
 
-  # - name: Options for CosMx reports
+  - name: Options for CosMx reports
+    arguments:
+      - name: --obs_area
+        type: string
+        description: The key in the h5mu .obs field that contains the cell area.
+        default: Area
+      - name: --obs_aspect_ratio
+        type: string
+        description: The key in the h5mu .obs field that contains the aspect ratio.
+        default: AspectRatio
+      - name: --obs_dapi_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the DAPI stain intensity.
+        default: [Mean.DAPI, Max.DAPI]
+      - name: --obs_membrane_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the membrane stain intensity.
+        default: [Mean.MembraneStain, Max.MembraneStain]
+      - name: --obs_panck_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the PanCK stain intensity.
+        default: [Mean.PanCK, Max.PanCK]
+      - name: --obs_cd45_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the CD45 stain intensity.
+        default: [Mean.CD45, Max.CD45]
+      - name: --obs_cd3_stain
+        type: string
+        multiple: true
+        description: The keys in the h5mu .obs field that contains the CD3 stain intensity.
+        default: [Mean.CD3, Max.CD3]
 
 resources:
   - type: python_script
