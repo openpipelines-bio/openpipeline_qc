@@ -1,3 +1,9 @@
+# openpipeline_qc 0.2.1
+
+## BUG FIX
+
+* Surface updated CosMx and Visium features.
+
 # openpipeline_qc 0.2.0
 
 ## NEW FEATURES
