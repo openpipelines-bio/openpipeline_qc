@@ -147,6 +147,14 @@ viash run src/ingestion_qc/h5mu_to_qc_json/config.vsh.yaml --engine docker -- \
   --output "$OUT_DIR_SPATIAL"/xenium_dataset.json \
   --output_reporting_json "$OUT_DIR_SPATIAL"/xenium_report_structure.json
 
+viash run src/ingestion_qc/h5mu_to_qc_json/config.vsh.yaml --engine docker -- \
+  --input "$OUT_DIR_SPATIAL"/visium_tiny.qc.h5mu \
+  --input "$OUT_DIR_SPATIAL"/visium_tiny.qc.h5mu \
+  --ingestion_method visium \
+  --min_num_nonzero_vars 1 \
+  --output "$OUT_DIR_SPATIAL"/visium_dataset.json \
+  --output_reporting_json "$OUT_DIR_SPATIAL"/visium_report_structure.json
+
 # remove all state yaml files
 rm "$OUT_DIR"/*.yaml
 rm "$OUT_DIR_SPATIAL"/*.yaml

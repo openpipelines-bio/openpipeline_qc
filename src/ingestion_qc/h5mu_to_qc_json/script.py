@@ -243,6 +243,31 @@ def generate_xenium_stats(mod_obs, sample_id, required_keys):
             **{key: mod_obs[key] for key in metadata_obs_keys}
         }
     )
+    
+    return cell_rna_stats
+
+def generate_visium_stats(mod_obs, sample_id, required_keys):
+    
+    # Format required columns
+    mod_obs = format_required_columns(required_keys, mod_obs)
+
+    # Format visium-specific columns
+    visium_formatted_columns = ["x_coord", "y_coord"]
+    for key in visium_formatted_columns:
+        mod_obs[key] = mod_obs[key].astype("float16")
+
+    # Fetch and format  all categorical columns for grouping
+    metadata_obs_keys, mod_obs = format_categorical_columns(mod_obs)
+
+    # Create cell RNA stats dataframe
+    cell_rna_stats = pd.DataFrame(
+        {
+            "sample_id": pd.Categorical(sample_id),
+            **{key: mod_obs[key] for key in required_keys},
+            **{key: mod_obs[key] for key in visium_formatted_columns},
+            **{key: mod_obs[key] for key in metadata_obs_keys}
+        }
+    )
 
     return cell_rna_stats
 
@@ -286,7 +311,7 @@ def main(par):
         barcodes_original_count = mod_obs.shape[0]
 
         # Add coordinates to obs before filtering
-        if par["ingestion_method"] == "xenium":
+        if par["ingestion_method"] == "xenium" or par["ingestion_method"] == "visium":
             mod_obs["x_coord"] = mod_obsm["spatial"][:, 0]
             mod_obs["y_coord"] = mod_obsm["spatial"][:, 1]
 
@@ -340,6 +365,9 @@ def main(par):
 
         if par["ingestion_method"] == "xenium":
             cell_rna_stats = generate_xenium_stats(mod_obs, sample_id, required_keys)
+        
+        if par["ingestion_method"] == "visium":
+            cell_rna_stats = generate_visium_stats(mod_obs, sample_id, required_keys)
 
         cell_stats_dfs.append(cell_rna_stats)
         sample_stats_dfs.append(sample_summary_stats)
@@ -374,7 +402,8 @@ def main(par):
 
     report_structures = {
         "cellranger_multi": os.path.join(meta["resources_dir"], "report_structure/cellranger.json"),
-        "xenium": os.path.join(meta["resources_dir"], "report_structure/xenium.json")
+        "xenium": os.path.join(meta["resources_dir"], "report_structure/xenium.json"),
+        "visium": os.path.join(meta["resources_dir"], "report_structure/visium.json")
     }
 
     logger.info(f"Writing output report structure json to {par['output_reporting_json']}")

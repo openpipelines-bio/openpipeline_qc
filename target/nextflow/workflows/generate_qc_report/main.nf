@@ -3161,7 +3161,8 @@ meta = [
           "required" : true,
           "choices" : [
             "cellranger_multi",
-            "xenium"
+            "xenium",
+            "visium"
           ],
           "direction" : "input",
           "multiple" : false,
@@ -3373,6 +3374,18 @@ meta = [
       "path" : "test.nf",
       "is_executable" : true,
       "entrypoint" : "test_with_cellbender"
+    },
+    {
+      "type" : "nextflow_script",
+      "path" : "test.nf",
+      "is_executable" : true,
+      "entrypoint" : "test_xenium"
+    },
+    {
+      "type" : "nextflow_script",
+      "path" : "test.nf",
+      "is_executable" : true,
+      "entrypoint" : "test_visium"
     }
   ],
   "status" : "enabled",
@@ -3534,7 +3547,7 @@ meta = [
     "engine" : "native",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/nextflow/workflows/generate_qc_report",
     "viash_version" : "0.9.4",
-    "git_commit" : "115ef4bb01e2bd0b7fd7dc0b9fb7cce947d39f17",
+    "git_commit" : "791ad93f82f1e5ace3c6505d80d4cb9c37a89d30",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {

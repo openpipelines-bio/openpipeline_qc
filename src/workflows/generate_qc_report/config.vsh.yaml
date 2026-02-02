@@ -35,6 +35,7 @@ argument_groups:
         choices:
           - cellranger_multi
           - xenium
+          - visium
       - name: --sample_metadata
         type: file
         required: false
@@ -131,6 +132,12 @@ test_resources:
   - type: nextflow_script
     path: test.nf
     entrypoint: test_with_cellbender
+  - type: nextflow_script
+    path: test.nf
+    entrypoint: test_xenium
+  - type: nextflow_script
+    path: test.nf
+    entrypoint: test_visium
 
 dependencies:
   - name: metadata/add_id
