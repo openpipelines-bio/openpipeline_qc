@@ -11,6 +11,8 @@ param_list:
     input: s3://openpipelines-bio/openpipeline_spatial/resources_test/xenium/xenium_tiny.h5mu
   - id: Lung5_Rep2_tiny
     input: s3://openpipelines-bio/openpipeline_spatial/resources_test/cosmx/Lung5_Rep2_tiny.h5mu
+  - id: visium_tiny
+    input: s3://openpipelines-bio/openpipeline_spatial/resources_test/visium/Visium_FFPE_Human_Ovarian_Cancer_tiny.h5mu
 var_name_mitochondrial_genes: mitochondrial
 var_name_ribosomal_genes: ribosomal
 output: '\$id.qc.h5mu'
