@@ -307,7 +307,7 @@ def format_cosmx_columns(mod_obs):
         if key in mod_obs:
             if not pd.api.types.is_float_dtype(mod_obs[key]):
                 try:
-                    mod_obs[key] = mod_obs[key].astype("float16")
+                    mod_obs[key] = mod_obs[key].astype("float32")
                 except ValueError:
                     logger.warning(f"Could not convert column {key} to a float dtype.")
 

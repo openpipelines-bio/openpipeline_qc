@@ -4,6 +4,12 @@
 
 * Surface updated CosMx and Visium features.
 
+# openpipeline_qc 0.2.2
+
+## BUG FIX
+
+* `src/ingestion_qc/h5mu_to_qc_json`: Use float32 instead of float16 for CosMx staining metrics to prevent overflow to infinity (PR #17).
+
 # openpipeline_qc 0.2.0
 
 ## NEW FEATURES
