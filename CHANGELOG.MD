@@ -1,3 +1,19 @@
+# openpipeline_qc 0.3.0
+
+## MAJOR CHANGES
+
+* Bump OpenPipeline dependency to v4.1.0, relevant updates include major changes to memory consumption and runtimes for and support for MuData encoded in Zarr format for `calculate_qc_metrics` (PR #18). 
+
+* Bump CraftBox dependency to v0.3.2, relevant updates include support for symbolic link preservation for `move_files_to_directory` (PR #18).
+
+* Bump Viash to 0.9.7 (PR #18).
+
+* Bump anndata to 0.12.16 (PR #18).
+
+* Bump mudata to 0.3.8 (PR #18).
+
+* Testing: bump viashpy to 0.10.0 (PR #18).
+
 # openpipeline_qc 0.2.2
 
 ## BUG FIX
