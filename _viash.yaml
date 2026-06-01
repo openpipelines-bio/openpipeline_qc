@@ -1,4 +1,4 @@
-viash_version: 0.9.4
+viash_version: 0.9.7
 source: src
 target: target
 name: openpipeline_qc
@@ -10,11 +10,11 @@ repositories:
   - name: openpipeline
     repo: openpipeline
     type: vsh
-    tag: v4.0.0
+    tag: v4.1.0
   - name: craftbox
     repo: craftbox
     type: vsh
-    tag: v0.2.0
+    tag: v0.3.2
 info:
   test_resources:
     - type: s3
