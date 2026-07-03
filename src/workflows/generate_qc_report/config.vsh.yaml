@@ -175,6 +175,8 @@ test_resources:
   - type: nextflow_script
     path: test.nf
     entrypoint: test_cosmx
+  - type: nextflow_script
+    path: test.nf
     entrypoint: test_visium
 
 dependencies:
