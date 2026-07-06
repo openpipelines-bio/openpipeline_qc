@@ -1,3 +1,12 @@
+# openpipeline_qc (unreleased)
+
+## MINOR CHANGES
+
+* Migration of test resources to the package-specific `s3://openpipelines-bio/openpipeline_qc/resources_test` bucket (PR #26):
+
+  - Add `.info.test_resources` to `_viash.yaml` to specify where test resources need to be synced from.
+  - Test resources were regenerated via the scripts in `resources_test_scripts/`.
+
 # openpipeline_qc 0.3.0
 
 ## MAJOR CHANGES
