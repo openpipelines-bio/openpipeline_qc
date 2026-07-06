@@ -53,12 +53,12 @@ param_list:
 HERE
 
 nextflow run https://packages.viash-hub.com/vsh/openpipeline_spatial \
-  -revision v0.3.0 \
+  -revision v0.5.0 \
   -main-script target/_private/nextflow/filter/subset_cosmx/main.nf \
   -params-file /tmp/params.yaml \
-  -profile docker \
   -resume \
-  -c src/configs/labels_ci.config \
+  -profile docker,mount_temp \
+  -c ./src/configs/labels_ci.config \
   --publish_dir "$OUT" \
   --num_fovs 3 \
   --subset_transcripts_file True \
@@ -79,12 +79,12 @@ param_list:
 HERE
 
 nextflow run https://packages.viash-hub.com/vsh/openpipeline_spatial \
-  -revision v0.3.0 \
+  -revision v0.5.0 \
   -main-script target/nextflow/convert/from_cosmx_to_h5mu/main.nf \
   -params-file /tmp/params.yaml \
-  -profile docker \
   -resume \
-  -c src/configs/labels_ci.config \
+  -profile docker,mount_temp \
+  -c ./src/configs/labels_ci.config \
   --publish_dir "$OUT" \
   --output_compression "gzip"
 
@@ -118,12 +118,11 @@ find "${OUT}" -mindepth 1 ! -name "Lung5_Rep*_tiny.h5mu" -delete
 
 # generate json for testing
 nextflow run https://packages.viash-hub.com/vsh/openpipeline_qc \
-  -latest \
   -r v0.3.0 \
   -main-script target/_private/nextflow/ingestion_qc/h5mu_to_qc_json/main.nf \
-  -c src/configs/labels_ci.config \
-  -profile docker \
   -resume \
+  -profile docker,mount_temp \
+  -c ./src/configs/labels_ci.config \
   --input "$OUT"/Lung5_Rep1_tiny.h5mu \
   --input "$OUT"/Lung5_Rep2_tiny.h5mu \
   --ingestion_method cosmx \
@@ -137,7 +136,6 @@ rm -f "${OUT}"/*.state.yaml
 
 # Sync to S3
 aws s3 sync \
-    --profile di \
     "$OUT" \
     s3://openpipelines-bio/openpipeline_qc/resources_test/cosmx/"$ID" \
     --delete \

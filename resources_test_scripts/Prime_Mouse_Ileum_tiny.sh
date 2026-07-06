@@ -31,54 +31,49 @@ fi
 
 # Create H5MU
 nextflow run https://packages.viash-hub.com/vsh/openpipeline_spatial \
-  -revision v0.2.0 \
+  -revision v0.5.0 \
   -main-script target/nextflow/convert/from_xenium_to_spatialdata//main.nf \
-  -profile docker \
   -resume \
-  -c src/configs/labels_ci.config \
+  -profile docker,mount_temp \
+  -c ./src/configs/labels_ci.config \
   --input "$OUT/xenium_outs" \
   --output "$ID.zarr" \
   --publish_dir "$OUT"
 
 nextflow run https://packages.viash-hub.com/vsh/openpipeline_spatial \
-  -revision v0.2.0 \
+  -revision v0.5.0 \
   -main-script target/nextflow/convert/from_spatialdata_to_h5mu//main.nf \
-  -profile docker \
   -resume \
-  -c src/configs/labels_ci.config \
+  -profile docker,mount_temp \
+  -c ./src/configs/labels_ci.config \
   --input "$OUT/$ID.zarr" \
   --output "$ID.h5mu" \
   --publish_dir "$OUT"
 
 # run qc workflow
-cat > /tmp/params.yaml << HERE
-id: $ID
-input : "$OUT/$ID.h5mu"
-output: $ID.h5mu
-var_name_mitochondrial_genes: mitochondrial
-var_name_ribosomal_genes: ribosomal
-publish_dir: "$OUT"
-HERE
-
 nextflow \
   run https://packages.viash-hub.com/vsh/openpipeline \
   -r v4.1.1 \
   -main-script target/nextflow/workflows/qc/qc/main.nf \
   -resume \
   -profile docker,mount_temp \
-  -params-file /tmp/params.yaml \
-  -c ./src/configs/labels_ci.config
+  -c ./src/configs/labels_ci.config \
+  --id "$ID" \
+  --input "$OUT/$ID.h5mu" \
+  --var_name_mitochondrial_genes mitochondrial \
+  --var_name_ribosomal_genes ribosomal \
+  --output "$ID.h5mu" \
+  --publish_dir "$OUT"
 
 find "${OUT}" -mindepth 1 ! -name "$ID.h5mu" -delete
 
 # generate json for testing
 nextflow run https://packages.viash-hub.com/vsh/openpipeline_qc \
-  -latest \
   -r v0.3.0 \
   -main-script target/_private/nextflow/ingestion_qc/h5mu_to_qc_json/main.nf \
-  -c src/configs/labels_ci.config \
-  -profile docker \
   -resume \
+  -profile docker,mount_temp \
+  -c ./src/configs/labels_ci.config \
   --input "$OUT"/$ID.h5mu \
   --input "$OUT"/$ID.h5mu \
   --ingestion_method xenium \
@@ -91,7 +86,6 @@ rm -f "${OUT}"/*.state.yaml
 
 # Sync to S3
 aws s3 sync \
-    --profile di \
     "$OUT" \
     s3://openpipelines-bio/openpipeline_qc/resources_test/xenium/"$ID" \
     --delete \

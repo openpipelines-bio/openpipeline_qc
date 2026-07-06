@@ -64,90 +64,68 @@ if [[ ! -f "$feature_reference" ]]; then
 fi
 
 # Run mapping pipeline
-cat > /tmp/params.yaml << HERE
-id: "$ID"
-input: "$raw_dir"
-library_id:
-  - "${orig_sample_id}_GEX_1_subset"
-library_type:
-  - "Gene Expression"
-gex_reference: "$genome_tar"
-feature_reference: "$feature_reference"
-output_h5mu: "*.h5mu"
-HERE
-
 nextflow \
   run https://packages.viash-hub.com/vsh/openpipeline \
   -r v4.1.1 \
   -main-script target/nextflow/workflows/ingestion/cellranger_multi/main.nf \
   -resume \
-  --publish_dir "${OUT}" \
   -profile docker,mount_temp \
-  -params-file /tmp/params.yaml \
-  -c ./src/configs/labels_ci.config 
+  -c ./src/configs/labels_ci.config \
+  --id "$ID" \
+  --input "$raw_dir" \
+  --library_id "${orig_sample_id}_GEX_1_subset" \
+  --library_type "Gene Expression" \
+  --gex_reference "$genome_tar" \
+  --feature_reference "$feature_reference" \
+  --output_h5mu "${orig_sample_id}.h5mu" \
+  --publish_dir "$OUT"
 
-mv "$OUT/*.h5mu" "$OUT/${orig_sample_id}.h5mu"
-rm -f "${OUT}"/"${orig_sample_id}.cellranger_multi.output_raw/"
+rm -rf "${OUT}/${ID}.cellranger_multi.output_raw/"
 
 
 # run qc workflow
-cat > /tmp/params.yaml << HERE
-id: "$ID"
-input: "$OUT/$orig_sample_id.h5mu"
-var_name_mitochondrial_genes: mitochondrial
-var_name_ribosomal_genes: ribosomal
-publish_dir: "$OUT/"
-output: "${orig_sample_id}_qc.h5mu"
-HERE
-
 nextflow \
   run https://packages.viash-hub.com/vsh/openpipeline \
   -r v4.1.1 \
   -main-script target/nextflow/workflows/qc/qc/main.nf \
   -resume \
   -profile docker,mount_temp \
-  -params-file /tmp/params.yaml \
-  -c ./src/configs/labels_ci.config
+  -c ./src/configs/labels_ci.config \
+  --id "$ID" \
+  --input "$OUT/$orig_sample_id.h5mu" \
+  --var_name_mitochondrial_genes mitochondrial \
+  --var_name_ribosomal_genes ribosomal \
+  --output "${orig_sample_id}_qc.h5mu" \
+  --publish_dir "$OUT"
 
 # run cellbender
-cat > /tmp/params_cellbender.yaml <<EOF
-param_list:
-id: "$ID"
-input: "${OUT}/${orig_sample_id}_qc.h5mu"
-output: "${orig_sample_id}_qc_cellbender.h5mu"
-epochs: 5
-output_compression: gzip
-publish_dir: "$OUT"
-EOF
-
 nextflow \
   run https://packages.viash-hub.com/vsh/openpipeline \
   -r v4.1.1 \
   -main-script target/nextflow/correction/cellbender_remove_background/main.nf \
-  -c src/configs/labels_ci.config \
-  -profile docker,mount_temp \
-  -params-file /tmp/params_cellbender.yaml \
   -resume \
-  -c ./src/configs/labels_ci.config 
+  -profile docker,mount_temp \
+  -c ./src/configs/labels_ci.config \
+  --id "$ID" \
+  --input "${OUT}/${orig_sample_id}_qc.h5mu" \
+  --output "${orig_sample_id}_qc_cellbender.h5mu" \
+  --epochs 5 \
+  --output_compression gzip \
+  --publish_dir "$OUT"
 
 # Subset h5mu
-cat > /tmp/params_subset.yaml <<EOF
-id: "${orig_sample_id}_10k"
-input: "${OUT}/${orig_sample_id}_qc_cellbender.h5mu"
-number_of_observations: 10000
-output: "${orig_sample_id}_10k.h5mu"
-output_compression: gzip
-publish_dir: "$OUT"
-EOF
-
 nextflow run https://packages.viash-hub.com/vsh/openpipeline \
-  -latest \
   -r v4.1.1 \
   -main-script target/nextflow/filter/subset_h5mu/main.nf \
-  -c src/configs/labels_ci.config \
-  -profile docker \
-  -params-file /tmp/params_subset.yaml \
-  -resume
+  -resume \
+  -profile docker,mount_temp \
+  -c ./src/configs/labels_ci.config \
+  --id "${orig_sample_id}_10k" \
+  --input "${OUT}/${orig_sample_id}_qc_cellbender.h5mu" \
+  --number_of_observations 10000 \
+  --output "${orig_sample_id}_10k.h5mu" \
+  --output_compression gzip \
+  --publish_dir "$OUT"
 
 find "${OUT}" -mindepth 1 ! -name "${orig_sample_id}_10k.h5mu" -delete
 
@@ -190,14 +168,15 @@ print(f"Added metadata to {h5mu_file}")
 print("All files processed successfully!")
 EOF
 
+python /tmp/add_metadata_obs.py
+
 # generate json for testing
 nextflow run https://packages.viash-hub.com/vsh/openpipeline_qc \
-  -latest \
   -r v0.3.0 \
   -main-script target/_private/nextflow/ingestion_qc/h5mu_to_qc_json/main.nf \
-  -c src/configs/labels_ci.config \
-  -profile docker \
   -resume \
+  -profile docker,mount_temp \
+  -c ./src/configs/labels_ci.config \
   --input "${OUT}/${orig_sample_id}_10k.h5mu" \
   --input "${OUT}/${orig_sample_id}_10k.h5mu" \
   --ingestion_method cellranger_multi \

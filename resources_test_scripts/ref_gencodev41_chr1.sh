@@ -35,29 +35,22 @@ awk '{
 }' "$motifs_in" > "$motifs_modified"
 
 
-cat > /tmp/params.yaml << HERE
-param_list:
-  - id: "$ID"
-    genome_fasta: "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_41/GRCh38.primary_assembly.genome.fa.gz"
-    transcriptome_gtf: "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_41/gencode.v41.annotation.gtf.gz"
-    target: ["cellranger_arc"] 
-    output_fasta: "reference.fa.gz"
-    output_gtf: "reference.gtf.gz"
-    non_nuclear_contigs: null
-    output_cellranger_arc: "reference_cellranger.tar.gz"
-    motifs_file: "$motifs_modified"
-    subset_regex: "chr1"
-HERE
-
 nextflow run https://packages.viash-hub.com/vsh/openpipeline \
-  -latest \
   -r v4.1.1 \
   -main-script target/nextflow/workflows/ingestion/make_reference/main.nf \
-  -profile docker \
+  -resume \
+  -profile docker,mount_temp \
   -c ./src/configs/labels_ci.config \
-  -params-file /tmp/params.yaml \
-  --publish_dir $OUT \
-  -resume
+  --id "$ID" \
+  --genome_fasta "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_41/GRCh38.primary_assembly.genome.fa.gz" \
+  --transcriptome_gtf "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_41/gencode.v41.annotation.gtf.gz" \
+  --target cellranger_arc \
+  --output_fasta reference.fa.gz \
+  --output_gtf reference.gtf.gz \
+  --output_cellranger_arc reference_cellranger.tar.gz \
+  --motifs_file "$motifs_modified" \
+  --subset_regex chr1 \
+  --publish_dir "$OUT"
 
 rm "$motifs_modified"
 rm "$motifs_in"
