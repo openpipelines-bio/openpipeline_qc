@@ -16,7 +16,7 @@ def test_cellranger(run_component, tmp_path):
 
     run_component(
         [
-            "--input", meta["resources_dir"] + "/sample_one.qc.h5mu",
+            "--input", meta["resources_dir"] + "/5k_human_antiCMV_T_TBNK_connect_10k.h5mu",
             "--output", output
         ]
     )
@@ -32,7 +32,7 @@ def test_xenium(run_component, tmp_path):
 
     run_component(
         [
-            "--input", meta["resources_dir"] + "/xenium_tiny.qc.h5mu",
+            "--input", meta["resources_dir"] + "/Prime_Mouse_Ileum_tiny.h5mu",
             "--output", output
         ]
     )
@@ -48,7 +48,7 @@ def test_cosmx(run_component, tmp_path):
 
     run_component(
         [
-            "--input", meta["resources_dir"] + "/Lung5_Rep2_tiny.qc.h5mu",
+            "--input", meta["resources_dir"] + "/Lung5_Rep2_tiny.h5mu",
             "--output", output
         ]
     )

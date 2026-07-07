@@ -18,8 +18,8 @@ def test_cellranger_execution(run_component, tmp_path):
 
     run_component(
         [
-            "--input", meta["resources_dir"] + "/resources_test/qc_sample_data/sample_one.qc.cellbender.h5mu",
-            "--input", meta["resources_dir"] + "/resources_test/qc_sample_data/sample_two.qc.cellbender.h5mu",
+            "--input", meta["resources_dir"] + "/resources_test/cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu",
+            "--input", meta["resources_dir"] + "/resources_test/cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu",
             "--ingestion_method", "cellranger_multi",
             "--output", output_json_path,
             "--output_reporting_json", output_reporting_json_path
@@ -56,8 +56,8 @@ def test_set_filters(run_component, tmp_path):
 
     run_component(
         [
-            "--input", meta["resources_dir"] + "/resources_test/qc_sample_data/sample_one.qc.cellbender.h5mu",
-            "--input", meta["resources_dir"] + "/resources_test/qc_sample_data/sample_two.qc.cellbender.h5mu",
+            "--input", meta["resources_dir"] + "/resources_test/cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu",
+            "--input", meta["resources_dir"] + "/resources_test/cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu",
             "--ingestion_method", "cellranger_multi",
             "--output", output_json_path,
             "--output_reporting_json", output_reporting_json_path,
@@ -108,8 +108,8 @@ def test_xenium_execution(run_component, tmp_path):
 
     run_component(
         [
-            "--input", meta["resources_dir"] + "/resources_test/spatial_qc_sample_data/xenium_tiny.qc.h5mu",
-            "--input", meta["resources_dir"] + "/resources_test/spatial_qc_sample_data/xenium_tiny.qc.h5mu",
+            "--input", meta["resources_dir"] + "/resources_test/xenium/Prime_Mouse_Ileum_tiny/Prime_Mouse_Ileum_tiny.h5mu",
+            "--input", meta["resources_dir"] + "/resources_test/xenium/Prime_Mouse_Ileum_tiny/Prime_Mouse_Ileum_tiny.h5mu",
             "--ingestion_method", "xenium",
             "--min_num_nonzero_vars", "1",
             "--output", output_json_path,
@@ -146,7 +146,8 @@ def test_cosmx_execution(run_component, tmp_path):
 
     run_component(
         [
-            "--input", meta["resources_dir"] + "/resources_test/spatial_qc_sample_data/Lung5_Rep2_tiny.qc.h5mu",
+            "--input", meta["resources_dir"] + "/resources_test/cosmx/SMI_Lung5/Lung5_Rep1_tiny.h5mu",
+            "--input", meta["resources_dir"] + "/resources_test/cosmx/SMI_Lung5/Lung5_Rep2_tiny.h5mu",
             "--ingestion_method", "cosmx",
             "--min_num_nonzero_vars", "1",
             "--output", output_json_path,

@@ -3,7 +3,7 @@ targetDir = params.rootDir + "/target/nextflow/workflows"
 
 include { generate_qc_report } from targetDir + "/generate_qc_report/main.nf"
 
-params.resources_test = "s3://openpipelines-bio/openpipeline_incubator/resources_test/"
+params.resources_test = "s3://openpipelines-bio/openpipeline_qc/resources_test/"
 
 workflow test_no_cellbender {
 
@@ -12,7 +12,7 @@ workflow test_no_cellbender {
   output_ch = Channel.fromList([
       [
         id: "sample_1",
-        input: resources_test_file.resolve("qc_sample_data/sample_one.qc.h5mu"),
+        input: resources_test_file.resolve("cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu"),
         run_cellbender: false,
         ingestion_method: "cellranger_multi",
         var_gene_names: "gene_symbol",
@@ -22,7 +22,7 @@ workflow test_no_cellbender {
       ],
       [
         id: "sample_2",
-        input: resources_test_file.resolve("qc_sample_data/sample_two.qc.h5mu"),
+        input: resources_test_file.resolve("cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu"),
         ingestion_method: "cellranger_multi",
         var_gene_names: "gene_symbol",
         run_cellbender: false,
@@ -59,7 +59,7 @@ workflow test_xenium {
   output_ch = Channel.fromList([
       [
         id: "sample_one",
-        input: resources_test_file.resolve("spatial_qc_sample_data/xenium_tiny.qc.h5mu"),
+        input: resources_test_file.resolve("xenium/Prime_Mouse_Ileum_tiny/Prime_Mouse_Ileum_tiny.h5mu"),
         run_cellbender: false,
         ingestion_method: "xenium",
         var_gene_names: "gene_ids",
@@ -69,7 +69,7 @@ workflow test_xenium {
       ],
       [
         id: "sample_two",
-        input: resources_test_file.resolve("spatial_qc_sample_data/xenium_tiny.qc.h5mu"),
+        input: resources_test_file.resolve("xenium/Prime_Mouse_Ileum_tiny/Prime_Mouse_Ileum_tiny.h5mu"),
         ingestion_method: "xenium",
         var_gene_names: "gene_ids",
         min_num_nonzero_vars: "1",
@@ -106,7 +106,7 @@ workflow test_with_cellbender {
   output_ch = Channel.fromList([
       [
         id: "sample_one",
-        input: resources_test_file.resolve("qc_sample_data/sample_one.qc.h5mu"),
+        input: resources_test_file.resolve("cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu"),
         ingestion_method: "cellranger_multi",
         var_gene_names: "gene_symbol",
         run_cellbender: true,
@@ -116,7 +116,7 @@ workflow test_with_cellbender {
       ],
       [
         id: "sample_two",
-        input: resources_test_file.resolve("qc_sample_data/sample_two.qc.h5mu"),
+        input: resources_test_file.resolve("cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu"),
         ingestion_method: "cellranger_multi",
         var_gene_names: "gene_symbol",
         run_cellbender: true,
@@ -153,7 +153,7 @@ workflow test_multiple_reports {
   output_ch = Channel.fromList([
       [
         id: "sample_1",
-        input: resources_test_file.resolve("qc_sample_data/sample_one.qc.h5mu"),
+        input: resources_test_file.resolve("cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu"),
         ingestion_method: "cellranger_multi",
         run_cellbender: false,
         metadata_obs_keys: ["donor_id", "cell_type", "batch", "condition"],
@@ -163,7 +163,7 @@ workflow test_multiple_reports {
       ],
       [
         id: "sample_2",
-        input: resources_test_file.resolve("qc_sample_data/sample_two.qc.h5mu"),
+        input: resources_test_file.resolve("cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu"),
         ingestion_method: "cellranger_multi",
         run_cellbender: false,
         metadata_obs_keys: ["donor_id", "cell_type", "batch", "condition"],
@@ -173,27 +173,7 @@ workflow test_multiple_reports {
       ],
       [
         id: "sample_3",
-        input: resources_test_file.resolve("qc_sample_data/sample_one.qc.h5mu"),
-        ingestion_method: "cellranger_multi",
-        run_cellbender: false,
-        metadata_obs_keys: ["donor_id", "cell_type", "batch", "condition"],
-        output_html: "report.html",
-        max_samples_per_report: 2,
-        publish_dir: "test_out"
-      ],
-      [
-        id: "sample_4",
-        input: resources_test_file.resolve("qc_sample_data/sample_two.qc.h5mu"),
-        ingestion_method: "cellranger_multi",
-        run_cellbender: false,
-        metadata_obs_keys: ["donor_id", "cell_type", "batch", "condition"],
-        output_html: "report.html",
-        max_samples_per_report: 2,
-        publish_dir: "test_out"
-      ],
-      [
-        id: "sample_5",
-        input: resources_test_file.resolve("qc_sample_data/sample_one.qc.h5mu"),
+        input: resources_test_file.resolve("cellranger/10x_5k_anticmv/5k_human_antiCMV_T_TBNK_connect_10k.h5mu"),
         ingestion_method: "cellranger_multi",
         run_cellbender: false,
         metadata_obs_keys: ["donor_id", "cell_type", "batch", "condition"],
@@ -214,14 +194,15 @@ workflow test_multiple_reports {
         assert state instanceof Map : "State should be a map. Found: ${state}"
         assert state.containsKey("output_qc_report"): "Output should contain key `output_qc_report`"
         assert state.containsKey("output_processed_h5mu"): "Output should contain key `output_processed_h5mu`"
-        assert state.output_qc_report.size() == 3 : "Expected exactly one output HTML file to be generated"
-        assert state.output_qc_report.every { it.isFile()} : "All output HTML report file should exist"
+        assert state.output_qc_report.size() == 2 : "Expected exactly two output HTML files to be generated"
+        assert state.output_qc_report.every { it.isFile()} : "All output HTML report files should exist"
         assert state.output_processed_h5mu.isDirectory() : "Output directory should exist"
         def files = state.output_processed_h5mu.listFiles().findAll { it.isFile() }
-        assert files.size() == 5 : "Output directory should contain exactly 5 files, but found ${files.size()} files"
+        assert files.size() == 3 : "Output directory should contain exactly 3 files, but found ${files.size()} files"
         "Output: $output"
     }
 }
+
 workflow test_visium {
 
   resources_test_file = file(params.resources_test)
@@ -229,7 +210,7 @@ workflow test_visium {
   output_ch = Channel.fromList([
       [
         id: "sample_one",
-        input: resources_test_file.resolve("spatial_qc_sample_data/visium_tiny.qc.h5mu"),
+        input: resources_test_file.resolve("visium/FFPE_Human_Ovarian_Cancer_tiny/FFPE_Human_Ovarian_Cancer_tiny.h5mu"),
         run_cellbender: false,
         ingestion_method: "visium",
         min_num_nonzero_vars: "1",
@@ -238,7 +219,7 @@ workflow test_visium {
       ],
       [
         id: "sample_two",
-        input: resources_test_file.resolve("spatial_qc_sample_data/visium_tiny.qc.h5mu"),
+        input: resources_test_file.resolve("visium/FFPE_Human_Ovarian_Cancer_tiny/FFPE_Human_Ovarian_Cancer_tiny.h5mu"),
         ingestion_method: "visium",
         min_num_nonzero_vars: "1",
         run_cellbender: false,
@@ -274,7 +255,7 @@ workflow test_cosmx {
   output_ch = Channel.fromList([
       [
         id: "sample_one",
-        input: resources_test_file.resolve("spatial_qc_sample_data/Lung5_Rep2_tiny.qc.h5mu"),
+        input: resources_test_file.resolve("cosmx/SMI_Lung5/Lung5_Rep1_tiny.h5mu"),
         run_cellbender: false,
         ingestion_method: "cosmx",
         min_num_nonzero_vars: "1",
@@ -283,7 +264,7 @@ workflow test_cosmx {
       ],
       [
         id: "sample_two",
-        input: resources_test_file.resolve("spatial_qc_sample_data/Lung5_Rep2_tiny.qc.h5mu"),
+        input: resources_test_file.resolve("cosmx/SMI_Lung5/Lung5_Rep2_tiny.h5mu"),
         ingestion_method: "cosmx",
         min_num_nonzero_vars: "1",
         run_cellbender: false,

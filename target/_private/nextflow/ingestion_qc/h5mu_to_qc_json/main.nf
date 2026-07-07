@@ -3718,7 +3718,7 @@ meta = [
     "engine" : "docker",
     "output" : "/home/runner/work/openpipeline_qc/openpipeline_qc/target/_private/nextflow/ingestion_qc/h5mu_to_qc_json",
     "viash_version" : "0.9.7",
-    "git_commit" : "ad0722ff3852cc6297421b53237a0af4f0b9fc59",
+    "git_commit" : "7ada2f3722996f2fcc2602524700f9e2ec5f04f9",
     "git_remote" : "https://github.com/openpipelines-bio/openpipeline_qc"
   },
   "package_config" : {
@@ -3728,7 +3728,7 @@ meta = [
       "test_resources" : [
         {
           "type" : "s3",
-          "path" : "s3://openpipelines-bio/openpipeline_incubator/resources_test",
+          "path" : "s3://openpipelines-bio/openpipeline_qc/resources_test",
           "dest" : "resources_test"
         }
       ]
