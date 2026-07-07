@@ -178,7 +178,10 @@ test_resources:
   - type: nextflow_script
     path: test.nf
     entrypoint: test_visium
-
+  - type: nextflow_script
+    path: test.nf
+    entrypoint: test_multiple_reports
+    
 dependencies:
   - name: metadata/add_id
     repository: openpipeline
