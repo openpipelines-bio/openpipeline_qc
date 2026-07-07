@@ -39,10 +39,10 @@ resources:
 test_resources:
   - type: bash_script
     path: test.sh
-  - path: /resources_test/qc_sample_data/sc_dataset.json
-  - path: /resources_test/qc_sample_data/sc_report_structure.json
-  - path: /resources_test/spatial_qc_sample_data/xenium_dataset.json
-  - path: /resources_test/spatial_qc_sample_data/xenium_report_structure.json
+  - path: /resources_test/cellranger/10x_5k_anticmv/sc_dataset.json
+  - path: /resources_test/cellranger/10x_5k_anticmv/sc_report_structure.json
+  - path: /resources_test/xenium/Prime_Mouse_Ileum_tiny/xenium_dataset.json
+  - path: /resources_test/xenium/Prime_Mouse_Ileum_tiny/xenium_report_structure.json
 engines:
   - type: docker
     image: node:latest
