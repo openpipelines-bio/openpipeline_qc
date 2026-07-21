@@ -8,8 +8,6 @@ authors:
     roles: [author]
   - __merge__: /src/authors/robrecht_cannoodt.yaml
     roles: [author]
-  - __merge__: /src/authors/weiwei_schultz.yaml
-    roles: [contributor]
 argument_groups:
   # TO DO: it would be nice if the sample metadata was already
   # included in the h5mu files, so that we don't need to pass it.
