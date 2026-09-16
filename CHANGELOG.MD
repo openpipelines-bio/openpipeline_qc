@@ -1,4 +1,4 @@
-# openpipeline_qc (unreleased)
+# openpipeline_qc 0.4.0
 
 ## MINOR CHANGES
 
