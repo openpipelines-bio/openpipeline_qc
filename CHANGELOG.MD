@@ -1,3 +1,9 @@
+# openpipeline_qc x.x.x (unreleased)
+
+## MINOR CHANGES
+
+* Bump OpenPipeline dependency to v4.2.0 and CraftBox dependency to v0.3.4 (PR # 29).
+
 # openpipeline_qc 0.4.0
 
 ## MINOR CHANGES
