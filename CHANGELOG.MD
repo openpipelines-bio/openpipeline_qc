@@ -2,6 +2,12 @@
 
 ## MINOR CHANGES
 
+* Bump OpenPipeline dependency to v4.2.0 and CraftBox dependency to v0.3.4 (PR # xx).
+
+# openpipeline_qc 0.4.0
+
+## MINOR CHANGES
+
 * Migration of test resources to the package-specific `s3://openpipelines-bio/openpipeline_qc/resources_test` bucket (PR #26):
 
   - Add `.info.test_resources` to `_viash.yaml` to specify where test resources need to be synced from.
