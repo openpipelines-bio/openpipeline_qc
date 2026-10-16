@@ -461,9 +461,9 @@ RUN cd /opt && git clone -b v0.2.1 https://github.com/openpipelines-bio/siqc.git
 
 LABEL org.opencontainers.image.authors="Jakub Majercik, Dorien Roosen, Robrecht Cannoodt, Weiwei Schultz"
 LABEL org.opencontainers.image.description="Companion container for running component ingestion_qc generate_html"
-LABEL org.opencontainers.image.created="2026-09-16T09:37:51Z"
+LABEL org.opencontainers.image.created="2026-10-16T08:42:48Z"
 LABEL org.opencontainers.image.source="https://github.com/openpipelines-bio/openpipeline_qc"
-LABEL org.opencontainers.image.revision="886edaa92c89fdfa3794b9c7b062a4f522dd5918"
+LABEL org.opencontainers.image.revision="a202e5d7575417763e9d2d08cbe0375b5916c4f1"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
