@@ -1,3 +1,9 @@
+# openpipeline_qc 0.5.1
+
+## BUG FIX
+
+* `src/ingestion_qc/generate_html`: Render the report from a copy of the report app, so the step also works when its container does not run as root, or runs from a read-only image as under Apptainer (PR #31).
+
 # openpipeline_qc 0.5.0
 
 ## MINOR CHANGES
