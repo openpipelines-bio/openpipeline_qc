@@ -50,10 +50,14 @@ engines:
       - type: apt
         packages:
           - git
+      # siqc builds the report inside the app's folder (Vite writes the page
+      # and its temporary files there), so any user may write to it: the
+      # container need not run as root.
       - type: docker
         run: |
           cd /opt && git clone -b v0.2.1 https://github.com/openpipelines-bio/siqc.git \
           && cd siqc && npm install \
+          && chmod -R a+rwX /opt/siqc \
           && true
 
 runners:

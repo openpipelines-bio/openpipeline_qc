@@ -1,3 +1,9 @@
+# openpipeline_qc 0.5.1
+
+## BUG FIX
+
+* `src/ingestion_qc/generate_html`: Let any user write to the report app's folder, so the step also works when its container does not run as root (PR #31).
+
 # openpipeline_qc 0.5.0
 
 ## MINOR CHANGES
